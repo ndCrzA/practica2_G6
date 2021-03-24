@@ -1,0 +1,68 @@
+
+<div class="row">
+    <div class="col-md-12 col-lg-12 mb-12 align-items-stretch">
+      <div class="card border-0 rounded-0 h-100">
+        <div class="card-title mb-1 p-3">
+          <h5>Streaming</h5>
+        </div>
+        <div class="card-body">
+
+            <div class="p-fluid p-grid">
+                <div class="p-field p-col-12 p-md-6">
+                    <span class="p-float-label">
+                        <input type="text" id="inputtext" pInputText [(ngModel)]="nombreStreaming">
+                        <label for="inputtext">Nombre streaming</label>
+                    </span>
+                </div>
+                <div class="p-field p-col-12 p-md-6">
+                    <span class="p-float-label">
+                        <input type="text" id="inputtext" pInputText [(ngModel)]="descripcionStreaming">
+                        <label for="inputtext">Descripcion streaming</label>
+                    </span>
+                </div>
+                <div class="p-field p-col-12">
+                    <span class="p-float-label">
+                        <textarea inputId="textarea" rows="3" cols="30" [(ngModel)]="observacionesStreaming" pInputTextarea></textarea>
+                        <label for="textarea">Observaciones del streaming</label>
+                    </span>
+                </div>
+            </div>
+
+            <div class="p-p-4">
+                <button pButton pRipple type="button" label="Guardar" class="p-d-block p-mx-auto" (click)="guardarStreaming()"></button>
+            </div>
+
+            <p-divider align="center" type="dashed">
+                <b>Streaming realizados</b>
+            </p-divider>
+
+            <p-table [value]="dataStreaming" [paginator]="true" [rows]="10" [showCurrentPageReport]="true"
+                currentPageReportTemplate="{first} - {last} de {totalRecords}" [rowsPerPageOptions]="[10,25,50]">
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th>id</th>
+                        <th>Nombre</th>
+                        <th>Descripcion</th>
+                        <th>Observaciones</th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-rowData>
+                    <tr>
+                        <td>{{rowData.id}}</td>
+                        <td>{{rowData.nombre}}</td>
+                        <td>{{rowData.descripcion}}</td>
+                        <td>{{rowData.observaciones}}</td>                        
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="paginatorleft">
+                    <p-button type="button" icon="pi pi-plus" styleClass="p-button-text"></p-button>
+                </ng-template>
+                <ng-template pTemplate="paginatorright">
+                    <p-button type="button" icon="pi pi-cloud" styleClass="p-button-text"></p-button>
+                </ng-template>
+            </p-table>
+            
+        </div>
+      </div>
+    </div>
+  </div>
