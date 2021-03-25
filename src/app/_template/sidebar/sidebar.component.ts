@@ -15,7 +15,8 @@ export class SidebarComponent implements OnInit {
     {name : 'Maps', route: '/maps', icon: 'fa fa-globe', badge: '', visible: false},
     {name : 'Notifications', route: '/notifications', icon: 'fas fa-bell', badge: '', visible: false},
     
-    {name : 'Comentarios', route: '/comentarios', icon: 'fas fa-comments', badge: '', visible: true}
+    {name : 'Comentarios', route: '/comentarios', icon: 'fas fa-comments', badge: '', visible: true},
+    {name : 'Listado de Usuarios', route: '/userlist', icon: 'fas fa-users', badge: '', visible: true}
   ];
 
   constructor() { }
