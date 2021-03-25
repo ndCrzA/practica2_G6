@@ -33,6 +33,7 @@ import { WelcomeComponent } from './_pages/welcome/welcome.component';
 
 import { StreamingComentarioComponent } from './streaming-comentario/streaming-comentario.component';
 import { UserListComponent } from './user-list/user-list.component';
+import { RegistroComponent } from './_pages/registro/registro.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import { UserListComponent } from './user-list/user-list.component';
     NotificationsComponent,
     WelcomeComponent,
     StreamingComentarioComponent,
-    UserListComponent
+    UserListComponent,
+    RegistroComponent
   ],
   imports: [
     BrowserModule,
