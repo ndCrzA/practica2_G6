@@ -30,7 +30,9 @@ import { TypographyComponent } from './_pages/typography/typography.component';
 import { MapsComponent } from './_pages/maps/maps.component';
 import { NotificationsComponent } from './_pages/notifications/notifications.component';
 import { WelcomeComponent } from './_pages/welcome/welcome.component';
+
 import { StreamingComentarioComponent } from './streaming-comentario/streaming-comentario.component';
+import { UserListComponent } from './user-list/user-list.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +47,8 @@ import { StreamingComentarioComponent } from './streaming-comentario/streaming-c
     MapsComponent,
     NotificationsComponent,
     WelcomeComponent,
-    StreamingComentarioComponent
+    StreamingComentarioComponent,
+    UserListComponent
   ],
   imports: [
     BrowserModule,
