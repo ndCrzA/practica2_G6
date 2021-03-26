@@ -17,7 +17,8 @@ export class SidebarComponent implements OnInit {
     
     {name : 'Comentarios', route: '/comentarios', icon: 'fas fa-comments', badge: '', visible: true},
     {name : 'Listado de Usuarios', route: '/userlist', icon: 'fas fa-users', badge: '', visible: true},
-    {name : 'Registro de Usuarios', route: '/registro', icon: 'fas fa-users', badge: '', visible: true}
+    {name : 'Registro de Usuarios', route: '/registro', icon: 'fas fa-users', badge: '', visible: true},
+    {name : 'perfil', route: '/perfil', icon: 'fas fa-users', badge: '', visible: true}
   ];
 
   constructor() { }
