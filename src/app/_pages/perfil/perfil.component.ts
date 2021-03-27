@@ -8,7 +8,7 @@ import { User } from '../../../app/model/user';
 })
 export class PerfilComponent implements OnInit {
 
-  usuario : User = { id: 2, name: 'Jeackelin', lastname: 'Montenegro', username: 'jackymontenegro', email: 'jsmontenegro0305@gmail.com', city: 'Guatemala', gender: 'Femenino' };
+  usuario : User = { id: 2, name: 'Jeackelin', lastname: 'Montenegro', password: '', email: 'jsmontenegro0305@gmail.com', city: 'Guatemala', gender: 'Femenino' };
 
   constructor() { }
 
