@@ -9,8 +9,8 @@
     <input type="text" placeholder="Ciudad" [(ngModel)]="ciudadUsuario"/>
     <p>Fecha de nacimiento</p>
     <input type="date" [(ngModel)]="fecha"/>
-    <input type="password" placeholder="Contraseña"/>
-    <input type="password" placeholder="Confirmar Contraseña"/>
+    <input type="password" placeholder="Contraseña" [(ngModel)]="contrasenaUsuario"/>
+    <input type="password" placeholder="Confirmar Contraseña" [(ngModel)]="vercontrasena"/>
     <button class="btn btn-danger" (click)="registrar()">Registrar</button>
  
 </div>
