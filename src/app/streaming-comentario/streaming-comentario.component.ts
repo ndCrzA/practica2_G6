@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-streaming-comentario',
@@ -20,7 +21,12 @@ export class StreamingComentarioComponent implements OnInit {
   descripcionStreaming;
   observacionesStreaming;
 
+  selectedStreaming;
   dataStreaming = [];
+
+  comentario;
+  dataComentario = [];
+  selectedComentario;
 
   ngOnInit(): void {
     this.data.snapshotChanges().subscribe(d => {
@@ -46,5 +52,36 @@ export class StreamingComentarioComponent implements OnInit {
     }    
     this.data.push(streaming);
   }
+
+  guardarComentario(){
+    let comentarios: AngularFireList<any> = this.db.list('/streaming/'+this.selectedStreaming.id+'/comentarios');
+    let c = {
+      comentario : this.comentario,
+      fecha :  new Date().toLocaleString()
+    }
+    comentarios.push(c);    
+    this.getDataComentario(this.selectedStreaming.id);
+  }
+
+  onClickStreaming(e,r){
+    this.getDataComentario(r.id);
+  }
+
+  getDataComentario(id){
+    let comentarios: Observable<any> = this.db.list('/streaming/'+id+'/comentarios').snapshotChanges();    
+    let suscription = comentarios.subscribe(ref => {
+      this.dataComentario = [];
+      ref.forEach(item => {
+        let c = {
+          id: item.payload.key,
+          comentario: item.payload.val().comentario,
+          fecha: item.payload.val().fecha,
+        }
+        this.dataComentario.push(c);
+      })
+    });    
+    setTimeout(() => suscription.unsubscribe(), 100);
+  }
+
 
 }

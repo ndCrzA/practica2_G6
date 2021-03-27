@@ -1,4 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireDatabase, AngularFireDatabaseModule } from '@angular/fire/database';
+import { environment } from 'src/environments/environment';
 
 import { StreamingComentarioComponent } from './streaming-comentario.component';
 
@@ -8,7 +11,10 @@ describe('StreamingComentarioComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ StreamingComentarioComponent ]
+      declarations: [ StreamingComentarioComponent ],
+      imports:[
+        AngularFireModule.initializeApp(environment.firebase)        
+      ]
     })
     .compileComponents();
   });
@@ -22,4 +28,9 @@ describe('StreamingComentarioComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+
+
+
+
 });

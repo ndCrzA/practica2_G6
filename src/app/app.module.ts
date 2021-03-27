@@ -62,7 +62,6 @@ import { PerfilComponent } from './_pages/perfil/perfil.component';
     CollapseModule.forRoot(),
     ToastrModule.forRoot(),
     AngularFireModule.initializeApp(environment.firebase),
-    AngularFireModule,
     AngularFireDatabaseModule,
     FormsModule,
     ReactiveFormsModule,
