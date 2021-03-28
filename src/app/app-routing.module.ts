@@ -13,7 +13,7 @@ import { LoginComponent } from './auth/login/login.component';
 import { StreamingComentarioComponent } from './streaming-comentario/streaming-comentario.component';
 import { UserListComponent } from './user-list/user-list.component';
 import { RegistroComponent } from './registro/registro.component';
-import { PerfilComponent } from './_pages/perfil/perfil.component';
+import { PerfilComponent } from './perfil/perfil.component';
 
 const routes: Routes = [
   {path: '', component:  DashboardComponent, canActivate: [AuthGuard]},
