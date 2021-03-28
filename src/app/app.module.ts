@@ -34,7 +34,8 @@ import { WelcomeComponent } from './_pages/welcome/welcome.component';
 import { StreamingComentarioComponent } from './streaming-comentario/streaming-comentario.component';
 import { UserListComponent } from './user-list/user-list.component';
 import { RegistroComponent } from './registro/registro.component';
-import { PerfilComponent } from './perfil/perfil.component';
+import { PerfilComponent } from './_pages/perfil/perfil.component';
+import { LoginComponent } from './auth/login/login.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +53,8 @@ import { PerfilComponent } from './perfil/perfil.component';
     StreamingComentarioComponent,
     UserListComponent,
     RegistroComponent,
-    PerfilComponent
+    PerfilComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
