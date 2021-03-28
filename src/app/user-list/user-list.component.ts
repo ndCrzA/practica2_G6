@@ -11,35 +11,22 @@ import { AngularFireDatabase, AngularFireList, SnapshotAction } from '@angular/f
 export class UserListComponent implements OnInit {
 
   private data: AngularFireList<any>;
-  private specificUser: AngularFireList<any>;
   public title: string = "Listado de Usuarios"
   private users: User[] = []
-  private userSpecific: User[] = []
 
   constructor(public db: AngularFireDatabase) {
     this.data = this.db.list('/RegistroUsuario');
-    this.specificUser = this.db.list('/RegistroUsuario', ref => ref.orderByChild('nombre').equalTo('Alison'))
   }
 
   ngOnInit(): void {
     console.log('Obteniendo los usuarios en firebase')
     this.getUsers()
-    this.getSpecificUser()
   }
 
   getUsersData(): User[] {
     return this.users
   }
 
-  getSpecificUser(): boolean {
-    this.specificUser.snapshotChanges().subscribe(userList => {
-      this.userSpecific = this.llenarLista(userList)
-    })
-    if (this.userSpecific.length > 0) {
-      return true
-    }
-    return false
-  }
 
   getUsers() {
     this.data.snapshotChanges().subscribe(userList => {

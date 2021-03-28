@@ -3,6 +3,7 @@ import { AngularFireModule } from '@angular/fire'
 import { AngularFireDatabase, AngularFireList, PathReference, QueryFn } from '@angular/fire/database';
 import { environment } from 'src/environments/environment'
 import { UserListComponent } from './user-list.component';
+import { User } from '../../app/model/user'
 
 class AngularFireDatabaseMock {
   list(val: PathReference, queryFn?: QueryFn) {
@@ -16,7 +17,7 @@ class AngularFireDatabaseMock {
   }
 }
 
-let users = [
+let userList = [
   {
     payload: {
       val: () => {
@@ -33,6 +34,7 @@ let users = [
     }
   }
 ]
+
 describe('UserListComponent', () => {
   let component: UserListComponent;
   let fixture: ComponentFixture<UserListComponent>;
@@ -82,15 +84,32 @@ describe('UserListComponent', () => {
   /*4) Se ingresa un valor y se verifica que haya sido ingresado correctamente*/
   it('Verificación de inserción del metodo LlenarLista()', () => {
     //@ts-ignore
-    component.llenarLista(users)
+    component.llenarLista(userList)
     expect(component.getUsersData().length).length == 1;
   })
 
   /*5) El campo email es un string*/
   it('El campo email es un string', () => {
     //@ts-ignore
-    let usuarios = component.llenarLista(users)
+    let usuarios = component.llenarLista(userList)
     expect(usuarios.length).toBe(1);
     expect(usuarios.pop().email).toBeInstanceOf(String);
   })
+
+  /*6)Verificacion del valor retornado por los parametros recibidos en el metodo LlenarLista*/
+  it('Verificacion de llamada de la funcion LlenarLista', function () {
+    let usuarios: User[] = [{
+      id: 1,
+      name: 'Alison',
+      lastname: "Leiva",
+      email: 'aleiva24@gmail.com',
+      city: 'Guatemala',
+      gender: 'Femenino',
+      password: ''
+    }]
+    //@ts-ignore
+    const y = component.llenarLista(userList);
+    expect(y).toEqual(usuarios)
+  })
+
 });
