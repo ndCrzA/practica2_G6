@@ -1,7 +1,7 @@
 
 import { Component, OnInit } from '@angular/core';
 import { User } from '../../app/model/user'
-import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
+import { AngularFireDatabase, AngularFireList, SnapshotAction } from '@angular/fire/database';
 
 @Component({
   selector: 'app-user-list',
@@ -11,27 +11,60 @@ import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
 export class UserListComponent implements OnInit {
 
   private data: AngularFireList<any>;
-  users: User[] = []
+  private specificUser: AngularFireList<any>;
+  public title: string = "Listado de Usuarios"
+  private users: User[] = []
+  private userSpecific: User[] = []
 
-  constructor(private db: AngularFireDatabase) {
+  constructor(public db: AngularFireDatabase) {
     this.data = this.db.list('/RegistroUsuario');
+    this.specificUser = this.db.list('/RegistroUsuario', ref => ref.orderByChild('nombre').equalTo('Alison'))
   }
 
   ngOnInit(): void {
-    this.data.snapshotChanges().subscribe(d => {
-      d.forEach(item => {
-        this.users.push({
-          id:  parseInt(item.payload.key),
-          name: item.payload.val().nombre,
-          lastname: item.payload.val().apellido,
-          email: item.payload.val().email,
-          city: item.payload.val().ciudad,
-          gender: item.payload.val().genero,
-          password: ''
-        })
-      })
+    console.log('Obteniendo los usuarios en firebase')
+    this.getUsers()
+    this.getSpecificUser()
+  }
+
+  getUsersData(): User[] {
+    return this.users
+  }
+
+  getSpecificUser(): boolean {
+    this.specificUser.snapshotChanges().subscribe(userList => {
+      this.userSpecific = this.llenarLista(userList)
+    })
+    if (this.userSpecific.length > 0) {
+      return true
+    }
+    return false
+  }
+
+  getUsers() {
+    this.data.snapshotChanges().subscribe(userList => {
+      this.users = this.llenarLista(userList)
     })
   }
+
+  llenarLista(userList: SnapshotAction<any>[]): User[] {
+    let usuarios: User[] = []
+
+    userList.forEach(user => {
+      usuarios.push({
+        id: parseInt(user.payload.key),
+        name: user.payload.val().nombre,
+        lastname: user.payload.val().apellido,
+        email: user.payload.val().email,
+        city: user.payload.val().ciudad,
+        gender: user.payload.val().genero,
+        password: ''
+      })
+    })
+
+    return usuarios
+  }
+
 
 }
 

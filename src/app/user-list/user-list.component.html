@@ -1,6 +1,5 @@
-<div>
-
-    <h4 class="text-muted mb-4">Listado de Usuarios </h4>
+<div class="content">
+    <h4 class="text-muted mb-4">{{title}}</h4>
 
     <div class="row mb-4">
 
@@ -11,20 +10,20 @@
                         <table class="table table-hover">
                             <thead>
                                 <tr>
-                                    <th scope="col">Nombre</th>
-                                    <th scope="col">Apellido</th>
-                                    <th scope="col">Correo</th>
-                                    <th scope="col">Genero</th>
-                                    <th scope="col">Ciudad</th>
+                                    <th id="name" scope="col">Nombre</th>
+                                    <th id="lastname" scope="col">Apellido</th>
+                                    <th id="email" scope="col">Correo</th>
+                                    <th id="gender" scope="col">Genero</th>
+                                    <th id="city" scope="col">Ciudad</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr *ngFor="let user of users">
-                                    <td>{{user.name}}</td>
-                                    <td>{{user.lastname}}</td>
-                                    <td>{{user.email}}</td>
-                                    <td>{{user.gender}}</td>
-                                    <td>{{user.city}}</td>
+                                <tr *ngFor="let user of getUsersData()">
+                                    <td id="name">{{user.name}}</td>
+                                    <td id="lastname">{{user.lastname}}</td>
+                                    <td id="email">{{user.email}}</td>
+                                    <td id="gender">{{user.gender}}</td>
+                                    <td id="city">{{user.city}}</td>
                                 </tr>
                             </tbody>
                         </table>
