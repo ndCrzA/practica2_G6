@@ -1,4 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { AngularFireModule } from '@angular/fire';
+import { environment } from 'src/environments/environment';
 
 import { RegistroComponent } from './registro.component';
 
@@ -8,7 +10,10 @@ describe('RegistroComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ RegistroComponent ]
+      declarations: [ RegistroComponent ],
+      imports:[
+        AngularFireModule.initializeApp(environment.firebase)        
+      ],
     })
     .compileComponents();
   });
