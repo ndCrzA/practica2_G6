@@ -1,0 +1,110 @@
+
+<div class="row">
+    <div class="col-md-12 col-lg-12 mb-12 align-items-stretch">
+      <div class="card border-0 rounded-0 h-100">
+        <div class="card-title mb-1 p-3">
+          <h5>Streaming</h5>
+        </div>
+        <div class="card-body">
+            <div class="p-fluid p-grid">
+                <div class="p-field p-col-12 p-md-6">
+                    <span class="p-float-label">
+                        <input type="text" id="inputtext1" pInputText [(ngModel)]="nombreStreaming">
+                        <label for="inputtext1">Nombre streaming</label>
+                    </span>
+                </div>
+                <div class="p-field p-col-12 p-md-6">
+                    <span class="p-float-label">
+                        <input type="text" id="inputtext2" pInputText [(ngModel)]="descripcionStreaming">
+                        <label for="inputtext2">Descripcion streaming</label>
+                    </span>
+                </div>
+                <div class="p-field p-col-12">
+                    <span class="p-float-label">
+                        <textarea inputId="textarea1" rows="3" cols="30" [(ngModel)]="observacionesStreaming" pInputTextarea></textarea>
+                        <label for="textarea1">Observaciones del streaming</label>
+                    </span>
+                </div>
+            </div>
+
+            <div class="p-p-4">
+                <button pButton pRipple type="button" label="Guardar" class="p-d-block p-mx-auto" (click)="guardarStreaming()"></button>
+            </div>
+
+            <p-divider align="center" type="dashed">
+                <b>Streaming realizados</b>
+            </p-divider>
+
+            <p-table [value]="dataStreaming" [(selection)]="selectedStreaming" [paginator]="true" [rows]="10" [showCurrentPageReport]="true"
+                currentPageReportTemplate="{first} - {last} de {totalRecords}" [rowsPerPageOptions]="[10,25,50]">
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th style="width: 3em"></th>
+                        <th>id</th>
+                        <th>Nombre</th>
+                        <th>Descripcion</th>
+                        <th>Observaciones</th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-rowData>
+                    <tr [pSelectableRow]="rowData">
+                        <td>
+                            <p-tableRadioButton [value]="rowData" (click)="onClickStreaming($event,rowData)"></p-tableRadioButton>
+                        </td>
+                        <td>{{rowData.id}}</td>
+                        <td>{{rowData.nombre}}</td>
+                        <td>{{rowData.descripcion}}</td>
+                        <td>{{rowData.observaciones}}</td>                        
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="paginatorleft">
+                    <p-button type="button" icon="pi pi-plus" styleClass="p-button-text"></p-button>
+                </ng-template>
+                <ng-template pTemplate="paginatorright">
+                    <p-button type="button" icon="pi pi-cloud" styleClass="p-button-text"></p-button>
+                </ng-template>
+            </p-table>
+
+            <p-divider align="center" type="dashed" *ngIf="selectedStreaming" class="pt-3">
+                <b>Comentarios {{selectedStreaming?.nombre}}</b>
+            </p-divider>
+
+            <div class="p-fluid p-grid" *ngIf="selectedStreaming">
+                <div class="p-field p-col-12">
+                    <span class="p-float-label">
+                        <textarea inputId="textarea2" rows="3" cols="30" [(ngModel)]="comentario" pInputTextarea></textarea>
+                        <label for="textarea2">Comentario</label>
+                    </span>
+                </div>
+            </div>            
+
+            <div class="p-p-4" *ngIf="selectedStreaming">
+                <button pButton pRipple type="button" label="Guardar" class="p-d-block p-mx-auto" (click)="guardarComentario()"></button>
+            </div>
+
+            
+            <p-table [value]="dataComentario" [(selection)]="selectedComentario" [paginator]="true" [rows]="10" [showCurrentPageReport]="true"
+                currentPageReportTemplate="{first} - {last} de {totalRecords}" [rowsPerPageOptions]="[10,25,50]" *ngIf="selectedStreaming">
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th style="width: 3em"></th>
+                        <th>id</th>
+                        <th>Comentario</th>
+                        <th>Fecha</th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-rowData>
+                    <tr [pSelectableRow]="rowData">
+                        <td>
+                            <p-tableRadioButton [value]="rowData"></p-tableRadioButton>
+                        </td>
+                        <td>{{rowData.id}}</td>
+                        <td>{{rowData.comentario}}</td>
+                        <td>{{rowData.fecha}}</td>                     
+                    </tr>
+                </ng-template>
+            </p-table>            
+        </div>
+      </div>
+    </div>
+  </div>

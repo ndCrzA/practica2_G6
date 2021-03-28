@@ -1,0 +1,16 @@
+<div class="form">
+    
+    <h3>REGISTRO</h3>
+      
+    <input type="text" placeholder="Nombre" [(ngModel)]="nombreUsuario"/>
+    <input type="text" placeholder="Apellido" [(ngModel)]="apellidoUsuario"/>
+    <input type="email" placeholder="Correo" [(ngModel)]="emailUsuario"/>
+    <input type="text" placeholder="Genero" [(ngModel)]="generoUsuario"/>
+    <input type="text" placeholder="Ciudad" [(ngModel)]="ciudadUsuario"/>
+    <p>Fecha de nacimiento</p>
+    <input type="date" [(ngModel)]="fecha"/>
+    <input type="password" placeholder="Contraseña" [(ngModel)]="contrasenaUsuario"/>
+    <input type="password" placeholder="Confirmar Contraseña" [(ngModel)]="vercontrasena"/>
+    <button class="btn btn-danger" (click)="registrar()">Registrar</button>
+ 
+</div>
