@@ -1,4 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { AngularFireModule } from '@angular/fire';
+import { environment } from 'src/environments/environment';
 
 import { UserListComponent } from './user-list.component';
 
@@ -8,7 +10,10 @@ describe('UserListComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ UserListComponent ]
+      declarations: [ UserListComponent ],
+      imports:[
+        AngularFireModule.initializeApp(environment.firebase)        
+      ],
     })
     .compileComponents();
   });
