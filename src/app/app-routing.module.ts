@@ -11,7 +11,7 @@ import { TypographyComponent } from './_pages/typography/typography.component';
 import { StreamingComentarioComponent } from './streaming-comentario/streaming-comentario.component';
 import { UserListComponent } from './user-list/user-list.component';
 import { RegistroComponent } from './registro/registro.component';
-import { PerfilComponent } from './_pages/perfil/perfil.component';
+import { PerfilComponent } from './perfil/perfil.component';
 
 const routes: Routes = [
   {path: '',   redirectTo: '/dashboard', pathMatch: 'full'},
