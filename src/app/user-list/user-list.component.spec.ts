@@ -55,4 +55,11 @@ describe('UserListComponent', () => {
     expect(trs).toBeTruthy();
     expect(trs.length).toBe(5);
   })
+
+  /*3) Se verifica si el contenido del titulo es 'Listado de Usuarios' */
+  it('El componente tiene el titulo Listado de usuarios', () => {
+    const fixture = TestBed.createComponent(UserListComponent);
+    const app = fixture.debugElement.componentInstance
+    expect(app.title).toEqual('Listado de Usuarios');
+  })
 });
