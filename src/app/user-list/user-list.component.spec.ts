@@ -48,4 +48,11 @@ describe('UserListComponent', () => {
     expect(component).toBeTruthy();
   });
 
+  /*2) Se comprueba que en la tabla se inserten 5 columnas por fila*/
+  it('La tabla de usuarios debe tener 5 datos por fila', () => {
+    const fixture = TestBed.createComponent(UserListComponent);
+    let trs = fixture.nativeElement.querySelectorAll('thead tr th');
+    expect(trs).toBeTruthy();
+    expect(trs.length).toBe(5);
+  })
 });
