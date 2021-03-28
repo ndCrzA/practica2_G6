@@ -1,0 +1,9 @@
+<div class="form">
+
+  <h3>Login</h3>
+  <form (submit)="onLogin(loginForm)" #loginForm="ngForm" *ngIf="!isLoading">
+  <input type="email" placeholder="Correo" ngModel name="correo"/>
+  <input type="password" placeholder="Contraseña" ngModel name="password"/>
+  <button class="btn btn-danger" *ngIf="!isLoading">Login</button>
+</form>
+</div>
