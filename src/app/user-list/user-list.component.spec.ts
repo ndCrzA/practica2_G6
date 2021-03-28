@@ -85,4 +85,12 @@ describe('UserListComponent', () => {
     component.llenarLista(users)
     expect(component.getUsersData().length).length == 1;
   })
+
+  /*5) El campo email es un string*/
+  it('El campo email es un string', () => {
+    //@ts-ignore
+    let usuarios = component.llenarLista(users)
+    expect(usuarios.length).toBe(1);
+    expect(usuarios.pop().email).toBeInstanceOf(String);
+  })
 });
