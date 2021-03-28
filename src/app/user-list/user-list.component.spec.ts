@@ -16,7 +16,23 @@ class AngularFireDatabaseMock {
   }
 }
 
-
+let users = [
+  {
+    payload: {
+      val: () => {
+        return ({
+          id: 1,
+          nombre: 'Alison',
+          apellido: "Leiva",
+          email: 'aleiva24@gmail.com',
+          ciudad: 'Guatemala',
+          genero: 'Femenino'
+        })
+      },
+      key: 1
+    }
+  }
+]
 describe('UserListComponent', () => {
   let component: UserListComponent;
   let fixture: ComponentFixture<UserListComponent>;
@@ -61,5 +77,12 @@ describe('UserListComponent', () => {
     const fixture = TestBed.createComponent(UserListComponent);
     const app = fixture.debugElement.componentInstance
     expect(app.title).toEqual('Listado de Usuarios');
+  })
+
+  /*4) Se ingresa un valor y se verifica que haya sido ingresado correctamente*/
+  it('Verificación de inserción del metodo LlenarLista()', () => {
+    //@ts-ignore
+    component.llenarLista(users)
+    expect(component.getUsersData().length).length == 1;
   })
 });
