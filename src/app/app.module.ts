@@ -34,7 +34,7 @@ import { WelcomeComponent } from './_pages/welcome/welcome.component';
 import { StreamingComentarioComponent } from './streaming-comentario/streaming-comentario.component';
 import { UserListComponent } from './user-list/user-list.component';
 import { RegistroComponent } from './registro/registro.component';
-import { PerfilComponent } from './_pages/perfil/perfil.component';
+import { PerfilComponent } from './perfil/perfil.component';
 
 @NgModule({
   declarations: [

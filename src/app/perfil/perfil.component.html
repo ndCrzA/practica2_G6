@@ -1,0 +1,20 @@
+<div class="form">
+    
+    <h3>PERFIL</h3>
+    
+<div *ngFor="let user of users">
+    <small class="text-muted"  >Nombre</small>
+    <input type="text" placeholder= {{user.name}} readonly="readonly"/> 
+    <small class="text-muted" >Apellido</small>
+    <input type="text" placeholder= {{user.lastname}} readonly="readonly"/> 
+    <small class="text-muted" >Correo Electronico</small>
+    <input type="text" placeholder= {{user.email}} readonly="readonly"/> 
+    <small class="text-muted" >Genero</small>
+    <input type="text" placeholder= {{user.gender}} readonly="readonly"/> 
+    <small class="text-muted" >Ciudad</small>
+    <input type="text" placeholder= {{user.city}} readonly="readonly"/> 
+</div>
+<!--
+    <button class="btn btn-danger" (click)="modificar()">Modificar</button>
+ -->
+</div>
