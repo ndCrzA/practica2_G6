@@ -50,4 +50,14 @@ describe('RegistroComponent', () => {
     let a: string="1234";
     expect(component.SeguridadContraseña(a)).toEqual("seguro");
   })
+
+  it('El metodo VerificacionEdad debe funcionar en el if', ()=>{
+    const spy2 =  spyOn(component, 'VerificacionEdad');
+    component.VerificacionCampos=(a: string) => true; 
+    component.VerificacionEdad=(a: number) => 20; 
+    component.contrasenaUsuario="123";   
+    component.vercontrasena="123";     
+    component.registrar();     
+    expect(spy2).toHaveBeenCalled;
+  })
 });
