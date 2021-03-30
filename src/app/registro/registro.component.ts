@@ -10,7 +10,6 @@ export class RegistroComponent implements OnInit {
   fecha: string='';
   edad: number=0;
   private data: AngularFireList<any>;
-
   constructor(
     private db: AngularFireDatabase
   ) {
@@ -47,6 +46,7 @@ export class RegistroComponent implements OnInit {
     return 2021-a;
   }
   VerificacionCampos(a:string): boolean{
+    
     if (a.length>0){
       return true;
     }
@@ -67,8 +67,9 @@ export class RegistroComponent implements OnInit {
   registrar(){
     
     if(this.VerificacionCampos(this.nombreUsuario) && this.VerificacionCampos(this.apellidoUsuario) && this.VerificacionCampos(this.emailUsuario) && this.VerificacionCampos(this.contrasenaUsuario)){
-      if (this.VerificacionEdad(this.edad)>17){
-        this.edad =this.VerificacionEdad(Number(this.fecha.substring(0,4)));
+      this.edad =this.VerificacionEdad(Number(this.fecha.substring(0,4)));
+      if (this.edad>17){
+        
         if(this.contrasenaUsuario==this.vercontrasena){
           let RegistroUsuario= {
             nombre: this.nombreUsuario,

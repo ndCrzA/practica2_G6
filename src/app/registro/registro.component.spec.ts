@@ -1,19 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { AngularFireModule } from '@angular/fire';
+import { AngularFireDatabase, AngularFireDatabaseModule, AngularFireList } from '@angular/fire/database';
 import { environment } from 'src/environments/environment';
-
 import { RegistroComponent } from './registro.component';
 
 describe('RegistroComponent', () => {
   let component: RegistroComponent;
   let fixture: ComponentFixture<RegistroComponent>;
-
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [ RegistroComponent ],
       imports:[
         AngularFireModule.initializeApp(environment.firebase)        
-      ],
+      ]
     })
     .compileComponents();
   });
@@ -27,4 +26,11 @@ describe('RegistroComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('El metodo VerificacionEdad() debe devolver la resta del año actual con el año ingresado', ()=>{
+    let a: number =1992;
+    let b: number =2021;
+    let result: number = b - a;
+    expect(component.VerificacionEdad(a)).toBe(result);
+  })
 });
