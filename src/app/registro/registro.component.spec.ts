@@ -45,4 +45,9 @@ describe('RegistroComponent', () => {
     component.registrar();
     expect(metodo).toHaveBeenCalled();
   })
+
+  it('El metodo Seguridadcontraseña() debe ser igual a seguro', ()=>{
+    let a: string="1234";
+    expect(component.SeguridadContraseña(a)).toEqual("seguro");
+  })
 });
