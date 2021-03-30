@@ -33,4 +33,10 @@ describe('RegistroComponent', () => {
     let result: number = b - a;
     expect(component.VerificacionEdad(a)).toBe(result);
   })
+
+  it('El metodo VerificacionCampo() debe devolver true', ()=>{
+    let a: string="hola";
+    expect(component.VerificacionCampos(a)).toBeTruthy();
+
+  })
 });
