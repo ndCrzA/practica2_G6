@@ -39,4 +39,10 @@ describe('RegistroComponent', () => {
     expect(component.VerificacionCampos(a)).toBeTruthy();
 
   })
+
+  it('El metodo registrar() debe funcionar',()=>{
+    let metodo=spyOn(component,'registrar');
+    component.registrar();
+    expect(metodo).toHaveBeenCalled();
+  })
 });
