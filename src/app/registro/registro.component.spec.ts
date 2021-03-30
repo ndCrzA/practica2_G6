@@ -60,4 +60,11 @@ describe('RegistroComponent', () => {
     component.registrar();     
     expect(spy2).toHaveBeenCalled;
   })
+
+  it('El metodo VerificacionCampos debe funcionar en el if', ()=>{
+    const spy2 =  spyOn(component, 'VerificacionEdad');
+    component.VerificacionCampos=(a: string) => true;    
+    component.registrar();     
+    expect(spy2).toHaveBeenCalled;
+  })
 });
