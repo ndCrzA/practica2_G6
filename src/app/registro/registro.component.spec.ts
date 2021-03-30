@@ -34,6 +34,7 @@ describe('RegistroComponent', () => {
     expect(component.VerificacionEdad(a)).toBe(result);
   })
 
+  
   it('El metodo VerificacionCampo() debe devolver true', ()=>{
     let a: string="hola";
     expect(component.VerificacionCampos(a)).toBeTruthy();
@@ -51,6 +52,47 @@ describe('RegistroComponent', () => {
     expect(component.SeguridadContraseña(a)).toEqual("seguro");
   })
 
+  it('El metodo Seguridadcontraseña() debe ser igual a seguro', ()=>{
+    let a: string="1";
+    expect(component.SeguridadContraseña(a)).toEqual("inseguro");
+  })
+   
+  it('El metodo verifiacionCampos() debe dispararse antes del metodo registrar()',()=>{
+    let metodo=spyOn(component,'registrar');
+    let metodo2=spyOn(component,'VerificacionCampos');
+    component.VerificacionCampos("123");
+    component.registrar();
+    expect(metodo2).toHaveBeenCalledBefore(metodo);
+  })
+  
+  it('El metodo CompararContraseña() debe existir', ()=>{
+    expect(component.CompararContraseña).toBeDefined();
+  })
+
+  it('El metodo CompararContraseña() debe devolver falso', ()=>{
+    let a: string="1234";
+    let b: string="12345";
+    expect(component.CompararContraseña(a,b)).toBeFalsy();
+  })
+
+  it('El metodo CompararContraseña() debe devolver true', ()=>{
+    let a: string="1234";
+    let b: string="1234";
+    expect(component.CompararContraseña(a,b)).toBeTruthy();
+  })
+
+  it('El metodo VerificacionEdad debe funcionar en el if', ()=>{
+    const spy =  spyOn(component, 'VerificacionEdad');
+    component.edad=null;    
+    component.registrar();     
+    expect(spy).toHaveBeenCalled;
+  })
+  it('El metodo VerificacionCampos debe funcionar en el if', ()=>{
+    const spy2 =  spyOn(component, 'VerificacionEdad');
+    component.VerificacionCampos=(a: string) => true;    
+    component.registrar();     
+    expect(spy2).toHaveBeenCalled;
+  })
   it('El metodo VerificacionEdad debe funcionar en el if', ()=>{
     const spy2 =  spyOn(component, 'VerificacionEdad');
     component.VerificacionCampos=(a: string) => true; 
@@ -60,11 +102,14 @@ describe('RegistroComponent', () => {
     component.registrar();     
     expect(spy2).toHaveBeenCalled;
   })
-
   it('El metodo VerificacionCampos debe funcionar en el if', ()=>{
     const spy2 =  spyOn(component, 'VerificacionEdad');
-    component.VerificacionCampos=(a: string) => true;    
+    component.VerificacionCampos=(a: string) => true; 
+    component.VerificacionEdad=(a: number) => 20; 
+    component.contrasenaUsuario="123";   
+    component.vercontrasena="1234";     
     component.registrar();     
     expect(spy2).toHaveBeenCalled;
   })
+ 
 });
