@@ -24,7 +24,9 @@ describe('PerfilComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  describe('1. Prueba: Creacion de componente',()=>{
+    it('El componente Perfil se deberia de crear existosamente', () => {    
+      expect(component).toBeTruthy();
+    });
   });
 });
