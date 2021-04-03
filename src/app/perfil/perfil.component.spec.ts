@@ -66,4 +66,12 @@ describe('PerfilComponent', () => {
       expect(spyCorreo).toHaveBeenCalled;
     })
   });
+
+  describe('7. Prueba: Metodo ngOnInit()',function(){
+    it('El metodo debe de ser llamado y funcionar correctamente por medio de Spyon',()=>{
+      let mOnINIT=spyOn(component,'ngOnInit');
+      component.ngOnInit();
+      expect(mOnINIT).toHaveBeenCalled();
+    })
+  });
 });
