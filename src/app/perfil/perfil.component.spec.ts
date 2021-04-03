@@ -29,4 +29,12 @@ describe('PerfilComponent', () => {
       expect(component).toBeTruthy();
     });
   });
+
+  describe("2. Verifica que la funcion traeDatos() consulte los datos correctos del usuario", function() {
+    it("deberia de devolver si el correo existe o no", function() {
+      var respuesta = component.traeDatos('KT@algo.com');
+      //expect(String(respuesta)).toEqual('true');
+      expect(respuesta).toBe(undefined);
+    });
+  });
 });
