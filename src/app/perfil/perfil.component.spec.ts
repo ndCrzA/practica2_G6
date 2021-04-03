@@ -37,4 +37,11 @@ describe('PerfilComponent', () => {
       expect(respuesta).toBe(undefined);
     });
   });
+
+  describe('3. Prueba: Se supone que vera que esten dentro de un div form',function(){
+    it('Componentes deben crearse dentro de un div principal con clase form', () => {
+      const compiled = fixture.nativeElement;
+      expect(compiled.querySelector('.form h3'));
+    });
+  });
 });
