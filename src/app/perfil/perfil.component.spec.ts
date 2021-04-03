@@ -51,4 +51,11 @@ describe('PerfilComponent', () => {
       expect(compiled.querySelector('.readonly input'));
     });
   });
+
+  describe('5. Prueba: Verificar titulo',function(){
+    it('Verificar que el titulo H3 del componente sea PERFIL', () => {
+      let vartitulo : string = component.titulo;
+      expect(vartitulo).toEqual('PERFIL');
+    });
+  });
 });
