@@ -58,4 +58,12 @@ describe('PerfilComponent', () => {
       expect(vartitulo).toEqual('PERFIL');
     });
   });
+
+  describe('6. Prueba: Metodo traeDatos()',function(){
+    it('El metodo traeDatos se envia un correo con spyon', ()=>{
+      const spyCorreo =  spyOn(component, 'traeDatos');
+      component.traeDatos=(correo: string) => 'KT@algo.com';      
+      expect(spyCorreo).toHaveBeenCalled;
+    })
+  });
 });
