@@ -44,4 +44,11 @@ describe('PerfilComponent', () => {
       expect(compiled.querySelector('.form h3'));
     });
   });
+
+  describe('4. Prueba: Los input no son modificables',function(){
+    it('Input en el proyecto no deben de modificarse', () => {
+      const compiled = fixture.nativeElement;
+      expect(compiled.querySelector('.readonly input'));
+    });
+  });
 });
