@@ -83,6 +83,12 @@ describe('StreamingComentarioComponent', () => {
   it('inicialmente debe tener un tamañao de 0', () => {
     expect(component.dataStreaming).toHaveSize(0);
   });
-
+  
+  //2)
+  it('DEBE DE EXISTIR UNA FUNCION QUE OBTIENE LOS STREAMING', () => {
+    let metodo = spyOn(component,'getDataStreaming');
+    component.getDataStreaming();
+    expect(metodo).toHaveBeenCalled();
+  });  
 
 });
