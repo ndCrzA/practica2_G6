@@ -108,4 +108,11 @@ describe('StreamingComentarioComponent', () => {
     component.getDataComentario('idFake');
     expect(component.dataComentario.length == 0).toEqual(true);
   });
+
+  //6)
+  it('evento del ratio button para cargar comentarios', () => {           
+    component.onClickStreaming(null,'idFake');
+    let c = component.setDataComentario(comentarios);
+    expect(c.length).toBeLessThan(2);
+  });
 });
