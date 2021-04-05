@@ -115,4 +115,12 @@ describe('StreamingComentarioComponent', () => {
     let c = component.setDataComentario(comentarios);
     expect(c.length).toBeLessThan(2);
   });
+
+  //7)
+  it('definir variables nulas', () => {           
+    expect(component.nombreStreaming).toBeNull();
+    expect(component.descripcionStreaming).toBeNull();
+    expect(component.observacionesStreaming).toBeNull();
+  });
+
 });
