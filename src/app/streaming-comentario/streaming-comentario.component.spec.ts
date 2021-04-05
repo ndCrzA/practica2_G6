@@ -91,4 +91,9 @@ describe('StreamingComentarioComponent', () => {
     expect(metodo).toHaveBeenCalled();
   });  
 
+  //3)
+  it('SETEAR INFORMACION DE STREAMING', () => {
+    let s = component.setDataStreaming(streamings);
+    expect(s.length > 1).toBeFalsy();
+  })
 });
