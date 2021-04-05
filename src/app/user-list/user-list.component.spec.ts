@@ -35,6 +35,37 @@ let userList = [
   }
 ]
 
+let users: User[] = [
+  {
+    id: 1,
+    name: 'Alison',
+    lastname: "Leiva",
+    email: 'aleiva24@gmail.com',
+    city: 'Guatemala',
+    gender: 'Femenino',
+    password: ''
+  },
+  {
+    id: 2,
+    name: 'Nicole',
+    lastname: "Leiva",
+    email: 'nicole@gmail.com',
+    city: 'Guatemala',
+    gender: 'Femenino',
+    password: ''
+  },
+  {
+    id: 3,
+    name: 'Alexis',
+    lastname: "Arevalo",
+    email: 'alex@gmail.com',
+    city: 'Guatemala',
+    gender: 'Masculino',
+    password: ''
+  }
+]
+
+
 describe('UserListComponent', () => {
   let component: UserListComponent;
   let fixture: ComponentFixture<UserListComponent>;
@@ -85,20 +116,20 @@ describe('UserListComponent', () => {
   it('Verificación de inserción del metodo LlenarLista()', () => {
     //@ts-ignore
     component.llenarLista(userList)
-    expect(component.getUsersData().length).length == 1;
+    expect(component.getUsersData()).length == 1;
   })
 
   /*5) El campo email es un string*/
   it('El campo email es un string', () => {
     //@ts-ignore
-    let usuarios = component.llenarLista(userList)
-    expect(usuarios.length).toBe(1);
-    expect(usuarios.pop().email).toBeInstanceOf(String);
+    let users = component.llenarLista(userList)
+    expect(users.length).toBe(1);
+    expect(users.pop().email).toBeInstanceOf(String);
   })
 
   /*6)Verificacion del valor retornado por los parametros recibidos en el metodo LlenarLista*/
   it('Verificacion de llamada de la funcion LlenarLista', function () {
-    let usuarios: User[] = [{
+    let users: User[] = [{
       id: 1,
       name: 'Alison',
       lastname: "Leiva",
@@ -108,8 +139,24 @@ describe('UserListComponent', () => {
       password: ''
     }]
     //@ts-ignore
-    const y = component.llenarLista(userList);
-    expect(y).toEqual(usuarios)
+    const value = component.llenarLista(userList);
+    expect(value).toEqual(users)
   })
 
+  /*7) implementacion de posible funcion que retorne los usuarios femeninos*/
+  it('implementacion de posible funcion que retorne los usuarios femeninos', function () {
+    let femaleUsers: User[] = []
+
+    spyOn(component, 'printUsersFamele').and.callFake(function (AllUsers: User[]): User[] {
+      AllUsers.forEach(user => {
+        if (user.gender.toLocaleLowerCase() == 'femenino')
+          femaleUsers.push(user)
+      })
+      return femaleUsers;
+    });
+
+    var result = component.printUsersFamele(users);
+    console.log(result)
+    expect(result).toBeTruthy();
+  });
 });

@@ -8,7 +8,7 @@ import { AngularFireDatabase, AngularFireList, SnapshotAction } from '@angular/f
   templateUrl: './user-list.component.html',
   styleUrls: ['./user-list.component.scss']
 })
-export class UserListComponent implements OnInit {
+export class UserListComponent {
 
   private data: AngularFireList<any>;
   public title: string = "Listado de Usuarios"
@@ -16,17 +16,19 @@ export class UserListComponent implements OnInit {
 
   constructor(public db: AngularFireDatabase) {
     this.data = this.db.list('/RegistroUsuario');
-  }
-
-  ngOnInit(): void {
-    console.log('Obteniendo los usuarios en firebase')
     this.getUsers()
+    this.printUsersFamele(this.getUsersData());
   }
 
   getUsersData(): User[] {
     return this.users
   }
 
+  printUsersFamele(usuarios: User[]) {
+    usuarios.forEach(user => {
+        console.log(user.name + user.lastname)
+    })
+  }
 
   getUsers() {
     this.data.snapshotChanges().subscribe(userList => {
