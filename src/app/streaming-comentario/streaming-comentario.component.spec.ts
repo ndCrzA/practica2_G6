@@ -96,4 +96,10 @@ describe('StreamingComentarioComponent', () => {
     let s = component.setDataStreaming(streamings);
     expect(s.length > 1).toBeFalsy();
   })
+
+  //4)
+  it('SETEAR INFORMACION DE COMENTARIOS', () => {
+    let c = component.setDataComentario(comentarios);
+    expect(c.length == 1).toBeTruthy();
+  })
 });
