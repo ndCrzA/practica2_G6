@@ -9,17 +9,11 @@ import { Observable } from 'rxjs';
 })
 export class StreamingComentarioComponent implements OnInit {
 
-  private data: AngularFireList<any>;
+  constructor(private db?: AngularFireDatabase){ }
 
-  constructor(
-    private db: AngularFireDatabase
-  ){
-    this.data = this.db.list('/streaming');
-  }
-
-  nombreStreaming;
-  descripcionStreaming;
-  observacionesStreaming;
+  nombreStreaming = null;
+  descripcionStreaming = null;
+  observacionesStreaming = null;
 
   selectedStreaming;
   dataStreaming = [];
@@ -29,59 +23,64 @@ export class StreamingComentarioComponent implements OnInit {
   selectedComentario;
 
   ngOnInit(): void {
-    this.data.snapshotChanges().subscribe(d => {
-      this.dataStreaming = [];
-      d.forEach(item => {
-        let streaming = {
-          id: item.payload.key,
-          nombre: item.payload.val().nombre,
-          descripcion: item.payload.val().descripcion,
-          observaciones: item.payload.val().observaciones
-        }
-        this.dataStreaming.push(streaming);
-      })
+    this.getDataStreaming();
+  }
+
+  getDataStreaming(){
+    let s = this.getDbList('/streaming').subscribe(ref => {
+      this.dataStreaming = this.setDataStreaming(ref)
+    });
+  }
+
+  setDataStreaming(ref): any[]{
+    let  dataStreaming = [];
+    ref.forEach(item => {
+      let s = {
+        id: item.payload.key,
+        nombre: item.payload.val().nombre,
+        descripcion: item.payload.val().descripcion,
+        observaciones: item.payload.val().observaciones
+      }
+      dataStreaming.push(s);
     })
+    return dataStreaming;
   }
-
-
+  
   guardarStreaming(){
-    let streaming = {
-      nombre: this.nombreStreaming,
-      descripcion: this.descripcionStreaming,
-      observaciones: this.observacionesStreaming
-    }    
-    this.data.push(streaming);
+    this.getDbFb('/streaming').push({nombre: this.nombreStreaming,descripcion: this.descripcionStreaming,observaciones: this.observacionesStreaming});
   }
 
-  guardarComentario(){
-    let comentarios: AngularFireList<any> = this.db.list('/streaming/'+this.selectedStreaming.id+'/comentarios');
-    let c = {
-      comentario : this.comentario,
-      fecha :  new Date().toLocaleString()
-    }
-    comentarios.push(c);    
-    this.getDataComentario(this.selectedStreaming.id);
-  }
 
   onClickStreaming(e,r){
     this.getDataComentario(r.id);
   }
 
   getDataComentario(id){
-    let comentarios: Observable<any> = this.db.list('/streaming/'+id+'/comentarios').snapshotChanges();    
-    let suscription = comentarios.subscribe(ref => {
-      this.dataComentario = [];
-      ref.forEach(item => {
-        let c = {
-          id: item.payload.key,
-          comentario: item.payload.val().comentario,
-          fecha: item.payload.val().fecha,
-        }
-        this.dataComentario.push(c);
-      })
+    let suscription = this.getDbList('/streaming/'+id+'/comentarios').subscribe(ref => {
+      this.dataComentario = this.setDataComentario(ref);      
     });    
-    setTimeout(() => suscription.unsubscribe(), 100);
+    //setTimeout(() => suscription.unsubscribe(), 100);
   }
 
+  setDataComentario(ref): any[]{
+    let comentarios = [];
+    ref.forEach(item => {
+      comentarios.push({id: item.payload.key,comentario: item.payload.val().comentario,fecha: item.payload.val().fecha});
+    })
+    return comentarios;
+  }
+
+  guardarComentario(){
+    this.getDbFb('/streaming/'+this.selectedStreaming.id+'/comentarios').push({comentario : this.comentario,fecha :  new Date().toLocaleString()});
+    this.getDataComentario(this.selectedStreaming.id);
+  }
+
+  getDbList(url): Observable<any> {
+    return this.getDbFb(url).snapshotChanges();
+  }
+
+  getDbFb(url): AngularFireList<any>{
+    return this.db.list(url);
+  }
 
 }
