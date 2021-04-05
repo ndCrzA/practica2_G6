@@ -102,4 +102,10 @@ describe('StreamingComentarioComponent', () => {
     let c = component.setDataComentario(comentarios);
     expect(c.length == 1).toBeTruthy();
   })
+
+  //5)
+  it('llamada al metodo obtener comentarios', () => {
+    component.getDataComentario('idFake');
+    expect(component.dataComentario.length == 0).toEqual(true);
+  });
 });
