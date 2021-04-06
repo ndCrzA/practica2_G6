@@ -75,5 +75,10 @@ describe('LoginComponent', () => {
       expect(compiled.querySelector('#correo').textContent).toEqual('');
     });
 
+    it('Comprobar la variable isLoading inicie como falsa', () => {
+      const myVar:boolean = component.isLoading;
+      expect(myVar).toBeFalsy();
+    });
+
 
 });
