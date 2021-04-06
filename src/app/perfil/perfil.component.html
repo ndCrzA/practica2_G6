@@ -1,8 +1,8 @@
 <div class="form">
     
-    <h3>PERFIL</h3>
+    <h3>{{titulo}}</h3>
     
-<div *ngFor="let user of users">
+<div *ngFor="let user of users" class = "small">
     <small class="text-muted"  >Nombre</small>
     <input type="text" placeholder= {{user.name}} readonly="readonly"/> 
     <small class="text-muted" >Apellido</small>
@@ -16,5 +16,5 @@
 </div>
 <!--
     <button class="btn btn-danger" (click)="modificar()">Modificar</button>
- -->
-</div>
+-->
+</div> 
