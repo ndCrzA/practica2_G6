@@ -80,5 +80,14 @@ describe('LoginComponent', () => {
       expect(myVar).toBeFalsy();
     });
 
+    it('Verificar la validez del formulario en la funcion onLogin', () =>{
+      const spy =  spyOn(component, 'onLogin');
+      const testForm = <NgForm>{
+        invalid: true
+      };
+      component.onLogin(testForm);
+      expect(spy).toHaveBeenCalled;
+    });
+
 
 });
