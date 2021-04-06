@@ -3,6 +3,8 @@ import { AngularFireModule } from '@angular/fire';
 import { environment } from 'src/environments/environment';
 import { AppComponent } from './app.component';
 
+import { RouterTestingModule } from '@angular/router/testing';
+
 describe('AppComponent', () => {
   let component: AppComponent;
   let fixture: ComponentFixture<AppComponent>;
@@ -11,7 +13,8 @@ describe('AppComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [ AppComponent ],
       imports:[
-        AngularFireModule.initializeApp(environment.firebase)        
+        RouterTestingModule,
+        AngularFireModule.initializeApp(environment.firebase)
       ]
     })
     .compileComponents();
