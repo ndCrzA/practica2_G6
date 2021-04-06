@@ -68,5 +68,12 @@ describe('LoginComponent', () => {
       expect(compiled.querySelector('#password')).not.toBeNull();
     });
 
+    it('Comprobar que el campo de correo se encuentre vacio', () => {
+      const fixture = TestBed.createComponent(LoginComponent);
+      fixture.detectChanges();
+      const compiled = fixture.nativeElement;
+      expect(compiled.querySelector('#correo').textContent).toEqual('');
+    });
+
 
 });
