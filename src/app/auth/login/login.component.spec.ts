@@ -89,5 +89,18 @@ describe('LoginComponent', () => {
       expect(spy).toHaveBeenCalled;
     });
 
+    it('Verificar que la variable isLoading sea verdader despues de presionar el boton LOGIN', () =>{
+      const myVar:boolean = component.isLoading;
+      const testForm = <NgForm>{
+        invalid: true,
+        value:{
+          correo: 'HR@algo.com',
+          password: 'admin'
+        }
+      };
+      component.onLogin(testForm);
+      expect(myVar).toBeTruthy;
+    });
+
 
 });
