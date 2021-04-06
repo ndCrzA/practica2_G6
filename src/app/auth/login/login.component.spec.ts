@@ -69,39 +69,4 @@ describe('LoginComponent', () => {
     });
 
 
-    it('Comprobar que el campo de correo se encuentre vacio', () => {
-      const fixture = TestBed.createComponent(LoginComponent);
-      fixture.detectChanges();
-      const compiled = fixture.nativeElement;
-      expect(compiled.querySelector('#correo').textContent).toEqual('');
-    });
-
-    it('Comprobar la variable isLoading inicie como falsa', () => {
-      const myVar:boolean = component.isLoading;
-      expect(myVar).toBeFalsy();
-    });
-
-    it('Verificar la validez del formulario en la funcion onLogin', () =>{
-      const spy =  spyOn(component, 'onLogin');
-      const testForm = <NgForm>{
-        invalid: true
-      };
-      component.onLogin(testForm);
-      expect(spy).toHaveBeenCalled;
-    });
-
-    it('Verificar que la variable isLoading sea verdader despues de presionar el boton LOGIN', () =>{
-      const myVar:boolean = component.isLoading;
-      const testForm = <NgForm>{
-        invalid: true,
-        value:{
-          correo: 'HR@algo.com',
-          password: 'admin'
-        }
-      };
-      component.onLogin(testForm);
-      expect(myVar).toBeTruthy;
-    });
-
-
 });
