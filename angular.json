@@ -97,7 +97,9 @@
               "src/app/app.component.ts",
               "src/app/_service/app.service.ts",
               "src/app/_pages/**",
-              "src/app/_template/**"
+              "src/app/_template/**",
+              "src/app/auth/auth.service.ts",
+              "src/environments/**"
             ],
             "assets": [
               "src/favicon.ico",
