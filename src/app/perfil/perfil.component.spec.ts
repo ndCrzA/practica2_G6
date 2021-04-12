@@ -74,4 +74,11 @@ describe('PerfilComponent', () => {
       expect(mOnINIT).toHaveBeenCalled();
     })
   });
+
+  describe('8. Prueba: Comprobar que el correo sea valido',function(){
+    it('Se verifica que el correo haya sido valido',()=>{
+      let c = component.pruebaCorreo("KM@algo.com");
+      expect(c).toBeTrue();
+    })
+  });
 });
