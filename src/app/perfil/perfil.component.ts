@@ -16,13 +16,15 @@ export class PerfilComponent implements OnInit {
   titulo = "PERFIL";
   correo = "";
 
-  constructor(private db: AngularFireDatabase, private auth1 : AuthService) {
+  constructor(private db: AngularFireDatabase) {
    
   }
   ngOnInit(): void {
     //this.correo = this.auth1.getToken();
     //this.traeDatos(correo);
-    this.traeDatos('KM@algo.com');
+    this.correo = "KM@algo.com";
+    this.traeDatos(String(this.correo));
+    this.pruebaCorreo(String(this.correo));
     }
 
   traeDatos(correo: string) {
@@ -41,6 +43,17 @@ export class PerfilComponent implements OnInit {
         })
         //return 'true';
     })
+  }
+
+  pruebaCorreo (correo:string){
+
+    var splitted = correo.split("@"); 
+    console.log(splitted);
+    if(splitted.length ==2){
+      return true;
+    }
+   
+
   }
 
 }
